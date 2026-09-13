@@ -1,0 +1,1316 @@
+{
+  "tools": [
+    {
+      "name": "magecut_status",
+      "description": "Connection, active project, revision and current job. Read this before editing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_workspace",
+      "description": "Select an absolute disk projects directory. Only allowed with no open project.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "directory"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_projects",
+      "description": "List disk projects in the selected workspace.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_project_create",
+      "description": "Create and open a disk project. Preserve any active project by saving first.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "previousProjectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 64,
+            "maximum": 7680
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 64,
+            "maximum": 7680
+          },
+          "fps": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 120
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "requestId",
+          "previousProjectId",
+          "name",
+          "width",
+          "height",
+          "fps"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_project_open",
+      "description": "Save the current project, then open a disk project by ID.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "previousProjectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "requestId",
+          "previousProjectId",
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_project_close",
+      "description": "Save and close the active project before selecting another workspace.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_save",
+      "description": "Persist the active scene, media and project to disk; fails if the disk save fails.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_checkpoint",
+      "description": "Save a separate complete project copy, including media and all scenes. Keeps the current project open.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_project_settings",
+      "description": "Set canvas dimensions, FPS or a native color/blur/animated background.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 64,
+            "maximum": 7680
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 64,
+            "maximum": 7680
+          },
+          "fps": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 120
+          },
+          "backgroundType": {
+            "type": "string",
+            "enum": [
+              "color",
+              "blur",
+              "animated"
+            ]
+          },
+          "backgroundColor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "blurIntensity": {},
+          "backgroundVideoSrc": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_state",
+      "description": "Read the full editable timeline, transitions, scene and media IDs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "projectId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_track",
+      "description": "Create/reorder tracks or set mute/lock. Index 0 is the frontmost layer. Keep captions and overlays above their background.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "create",
+              "reorder",
+              "settings"
+            ]
+          },
+          "trackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "media",
+              "text",
+              "audio"
+            ]
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "muted": {
+            "type": "boolean"
+          },
+          "locked": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_move_element",
+      "description": "Move one element to an existing compatible unlocked track, preserving its contents.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "trackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "elementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "toTrackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "startTime": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "trackId",
+          "elementId",
+          "toTrackId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_commands",
+      "description": "Discover supported editing commands and exact argument schemas. Includes caption plans and motion templates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 150
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_presets",
+      "description": "Search live visible preset shelves or read exact-ID specs. Choose role/scope explicitly for media.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "captions",
+              "styles",
+              "in",
+              "out",
+              "combo",
+              "text-effects",
+              "media-in",
+              "media-out",
+              "media-combo",
+              "media-effects",
+              "transitions",
+              "motion",
+              "recipes"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "main",
+              "supporting"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "source",
+              "object",
+              "scene"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "block",
+              "line",
+              "word",
+              "char"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_execute",
+      "description": "Run one validated native editor command. Use background=true for transcription. New element IDs and resulting revision are returned; retry only with the same requestId.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "command": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "args": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "background": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "command",
+          "args"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "magecut_update_element",
+      "description": "Update supported native text/media properties without changing other selected elements. Unknown fields are rejected.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "trackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "elementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "patch": {}
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "trackId",
+          "elementId",
+          "patch"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_apply_preset",
+      "description": "Apply a verified visible text style, text/media entrance/exit or effect. Caption systems and motion compositions use their named native commands. Supporting/source requires a nested composition, not a whole-object animation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "trackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "elementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "styles",
+              "in",
+              "out",
+              "combo",
+              "text-effects",
+              "media-in",
+              "media-out",
+              "media-combo",
+              "media-effects"
+            ]
+          },
+          "presetId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0
+          },
+          "intensity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 300
+          },
+          "speed": {
+            "type": "number",
+            "minimum": 0.25,
+            "maximum": 3
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "main",
+              "supporting"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "source",
+              "object",
+              "scene"
+            ]
+          },
+          "sound": {
+            "type": "boolean"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "add",
+              "remove"
+            ]
+          },
+          "effectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "trackId",
+          "elementId",
+          "category",
+          "presetId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_set_keyframes",
+      "description": "Replace only named scalar channels; keep all other channels. Times are element-local seconds; preserve explicit bezier controlPoints.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "trackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "elementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "keyframes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "time": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "easing": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "linear",
+                      "ease",
+                      "ease-in",
+                      "ease-out",
+                      "ease-in-out",
+                      "quad-in",
+                      "quad-out",
+                      "cubic-in",
+                      "cubic-out",
+                      "quad-ease",
+                      "cubic-ease",
+                      "circular-ease",
+                      "rebound-in",
+                      "rebound-out",
+                      "bezier"
+                    ]
+                  },
+                  "controlPoints": {
+                    "type": "object",
+                    "properties": {
+                      "x1": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "y1": {
+                        "type": "number"
+                      },
+                      "x2": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "y2": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "x1",
+                      "y1",
+                      "x2",
+                      "y2"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "time",
+                  "value"
+                ]
+              },
+              "minItems": 2,
+              "maxItems": 10000
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "trackId",
+          "elementId",
+          "keyframes"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_timing",
+      "description": "Move or resize a single element using timeline operations. Does not retime its source audio or replace easing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "trackId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "elementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "startTime": {
+            "type": "number",
+            "minimum": 0
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "trackId",
+          "elementId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_history",
+      "description": "Undo or redo one native history entry, then save.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "undo",
+              "redo"
+            ]
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_scene",
+      "description": "Save and switch to a project scene.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "sceneId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "sceneId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_import_media",
+      "description": "Import 1..20 absolute image/video/audio paths into the media library. Does not insert references on the timeline. Poll returned job; failures and unplayable files are explicit.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "minItems": 1,
+            "maxItems": 20
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "paths"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_frame",
+      "description": "Render a native composition frame at exact target seconds. Full resolution by default; includes fonts, masks, effects and motion blur.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "time": {
+            "type": "number",
+            "minimum": 0
+          },
+          "maxWidth": {
+            "type": "integer",
+            "minimum": 64,
+            "maximum": 7680
+          }
+        },
+        "required": [
+          "projectId",
+          "time"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_source_frame",
+      "description": "Inspect an imported reference/source at native resolution without adding it to the timeline. Reports decoder timestamp when available.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "mediaId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "time": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "projectId",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_source_audio",
+      "description": "Listen to a bounded reference/source interval as PCM WAV. Preserves source sample timing; does not alter timeline audio.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "mediaId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20
+          }
+        },
+        "required": [
+          "projectId",
+          "mediaId",
+          "start",
+          "duration"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_export",
+      "description": "Render the active scene to a NEW absolute MP4/WebM path through the native export renderer. Streaming write, progress/cancel and audio warnings; poll magecut_job.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "expectedRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 120
+          },
+          "outputPath": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "mp4",
+              "webm"
+            ]
+          },
+          "quality": {
+            "type": "string",
+            "enum": [
+              "high",
+              "very_high"
+            ]
+          },
+          "includeAudio": {
+            "type": "boolean"
+          },
+          "fps": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 120
+          }
+        },
+        "required": [
+          "projectId",
+          "expectedRevision",
+          "requestId",
+          "outputPath"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_job",
+      "description": "Read job progress, result, warnings or failure. A job ID is not a completed export.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "magecut_cancel",
+      "description": "Request cancellation of a running import/export job; poll until it has stopped.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    }
+  ]
+}

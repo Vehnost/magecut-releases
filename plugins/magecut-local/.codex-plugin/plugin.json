@@ -1,0 +1,26 @@
+{
+  "name": "magecut-local",
+  "version": "0.3.0",
+  "description": "Local video editing, captions, animation and export in the full Magecut browser editor.",
+  "author": {
+    "name": "Magecut"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Magecut Local",
+    "shortDescription": "Edit local video with a full timeline.",
+    "longDescription": "Windows x64 local video editor. Lightweight plugin; first launch downloads the full editor and Node.js with retry, resume and SHA-256 verification. No Electron or separate Node installation required.",
+    "developerName": "Magecut",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open my local Magecut editor.",
+      "Edit a video and save an editable project."
+    ]
+  },
+  "mcpServers": "./.mcp.json",
+  "repository": "https://github.com/Vehnost/magecut-releases"
+}

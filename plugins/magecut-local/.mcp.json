@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "magecut": {
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${PLUGIN_ROOT}/scripts/plugin-loader.ps1"
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "magecut",
+  "interface": {
+    "displayName": "Magecut"
+  },
+  "plugins": [
+    {
+      "name": "magecut-local",
+      "source": {
+        "source": "local",
+        "path": "./plugins/magecut-local"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
